@@ -4,9 +4,9 @@ import torchvision.transforms as transforms
 
 from PIL import Image
 from repvgg import create_RepVGG_A0 as create
-import LED_control as LED
+import LED_control_jetson as LED
 import threading
-import RPi.GPIO as GPIO
+import Jetson.GPIO as GPIO
 import time
 
 
