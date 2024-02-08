@@ -8,6 +8,7 @@ import torch.backends.cudnn as cudnn
 import torch
 import cv2
 
+
 from emotion import detect_emotion, init
 
 from models.experimental import attempt_load
@@ -153,24 +154,23 @@ def detect(opt):
             print(f"FPS: {1/(time.time()-t0):.2f}"+" "*5,end="\r")
             t0 = time.time()
         
-
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--source', type=str, default='0', help='source')  # file/folder, 0 for webcam
-    parser.add_argument('--img-size', type=int, default=512, help='inference size (pixels)')
-    parser.add_argument('--conf-thres', type=float, default=0.5, help='face confidence threshold')
-    parser.add_argument('--iou-thres', type=float, default=0.45, help='IOU threshold for NMS')
-    parser.add_argument('--device', default='', help='cuda device, i.e. 0 or 0,1,2,3 or cpu')
-    parser.add_argument('--hide-img', action='store_true', help='hide results')
-    save = parser.add_mutually_exclusive_group()
-    save.add_argument('--output-path', default="output.mp4", help='save location')
-    save.add_argument('--no-save', action='store_true', help='do not save images/videos')
-    parser.add_argument('--agnostic-nms', action='store_true', help='class-agnostic NMS')
-    parser.add_argument('--augment', action='store_true', help='augmented inference')
-    parser.add_argument('--line-thickness', default=2, type=int, help='bounding box thickness (pixels)')
-    parser.add_argument('--hide-conf', default=False, action='store_true', help='hide confidences')
-    parser.add_argument('--show-fps', default=False, action='store_true', help='print fps to console')
-    opt = parser.parse_args()
-    check_requirements(exclude=('pycocotools', 'thop'))
-    with torch.no_grad():
-        detect(opt=opt)
+	parser = argparse.ArgumentParser()
+	parser.add_argument('--source', type=str, default='0', help='source')  # file/folder, 0 for webcam
+	parser.add_argument('--img-size', type=int, default=512, help='inference size (pixels)')
+	parser.add_argument('--conf-thres', type=float, default=0.5, help='face confidence threshold')
+	parser.add_argument('--iou-thres', type=float, default=0.45, help='IOU threshold for NMS')
+	parser.add_argument('--device', default='', help='cuda device, i.e. 0 or 0,1,2,3 or cpu')
+	parser.add_argument('--hide-img', action='store_true', help='hide results')
+	save = parser.add_mutually_exclusive_group()
+	save.add_argument('--output-path', default="output.mp4", help='save location')
+	save.add_argument('--no-save', action='store_true', help='do not save images/videos')
+	parser.add_argument('--agnostic-nms', action='store_true', help='class-agnostic NMS')
+	parser.add_argument('--augment', action='store_true', help='augmented inference')
+	parser.add_argument('--line-thickness', default=2, type=int, help='bounding box thickness (pixels)')
+	parser.add_argument('--hide-conf', default=False, action='store_true', help='hide confidences')
+	parser.add_argument('--show-fps', default=False, action='store_true', help='print fps to console')
+	opt = parser.parse_args()
+	check_requirements(exclude=('pycocotools', 'thop'))
+	with torch.no_grad():
+	    detect(opt=opt)
